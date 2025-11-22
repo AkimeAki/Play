@@ -1,0 +1,13 @@
+/**/node_modules/
+/**/.env
+/dist/
+/.next/
+/.vercel/
+/.open-next/
+/.wrangler/
+/modules/
+*.code-workspace*
+!example.code-workspace*
+/.git/
+/src/styled-system/
+/out/

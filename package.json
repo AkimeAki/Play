@@ -1,0 +1,37 @@
+{
+	"name": "play",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"engines": {
+		"node": "22.19.0"
+	},
+	"volta": {
+		"node": "22.19.0"
+	},
+	"scripts": {
+		"clean": "node --experimental-strip-types ./tools/clean.ts",
+		"dev": "npm run clean && cross-env WATCHPACK_POLLING=true next dev -p 24562",
+		"dev:scan": "npm run clean && cross-env WATCHPACK_POLLING=true SCAN=true next dev -p 24562",
+		"build": "npm run lint && npm run clean && next build",
+		"preview": "next start -p 24562",
+		"format": "prettier --write ./**/*",
+		"lint": "biome lint"
+	},
+	"dependencies": {
+		"@types/node": "22.15.29",
+		"@types/react": "18.3.12",
+		"@types/react-dom": "18.3.1",
+		"cross-env": "10.0.0",
+		"next": "15.3.3",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
+		"sass": "1.92.1",
+		"typescript": "5"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"prettier": "3.6.2",
+		"prettier-plugin-sh": "0.18.0"
+	}
+}

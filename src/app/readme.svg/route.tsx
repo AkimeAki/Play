@@ -1,0 +1,59 @@
+import { InlineStyle } from "@/components/InlineStyle";
+
+export const dynamic = "force-dynamic";
+
+interface Props {
+	戯言: string;
+}
+
+function SVG({ 戯言 }: Props) {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200">
+			<title>格言</title>
+			<InlineStyle
+				css={`
+
+					#顔 {
+						font-size: 40px;
+					}
+
+					#戯言 {
+						font-size: 16px;
+						margin-top: 5px;
+					}
+				`}
+			/>
+			<g>
+				<foreignObject x="0" y="0" width="100%" height="100%">
+					{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+					{/* @ts-expect-error */}
+					<div xmlns="http://www.w3.org/1999/xhtml">
+						<div id="顔">( ㅎ ֊ㅎ )👋</div>
+						<div id="戯言">{戯言}</div>
+					</div>
+				</foreignObject>
+			</g>
+		</svg>
+	);
+}
+
+export async function GET() {
+	const りあくと = (await import("react-dom/server")).default;
+	const 戯言s = [
+		"キリンって冷静に見るとなんか変だよな",
+		"味噌汁飲んだ後に味噌汁作ると、味噌汁がまた飲めるぞ！",
+		'人に道聞かれすぎて "道" になっちまうよ…'
+	];
+	const 神様の言う通り = Math.floor(Math.random() * 戯言s.length);
+
+	const body = りあくと.renderToStaticMarkup(<SVG 戯言={戯言s[神様の言う通り]} />);
+
+	return new Response(body, {
+		status: 200,
+		headers: {
+			"Content-Type": "image/svg+xml",
+			"Cache-Control": "no-cache,no-store,must-revalidate,max-age=0",
+			Pragma: "no-cache"
+		}
+	});
+}
