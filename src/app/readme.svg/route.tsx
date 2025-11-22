@@ -9,7 +9,7 @@ interface Props {
 function SVG({ 戯言 }: Props) {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200">
-			<title>格言</title>
+			<title>戯言</title>
 			<InlineStyle
 				css={`
 
